@@ -9,15 +9,15 @@ dotenv.config();
 
 const app = express();
 
-app.get('/', (req, res) => {
-  res.send('Hello from the root!'); // Or res.sendFile('index.html') for a static file
+app.get('/api', (req, res) => {
+  res.send('Hello from the API root!'); // Or res.sendFile('index.html') for a static file
 }); 
 
 app.use(cors());
 app.use(express.json());
 
-app.use("/auth", authRoutes);
-app.use("/tasks", taskRoutes);
+app.use("/api/auth", authRoutes);
+app.use("/api/tasks", taskRoutes);
 
 app.listen(process.env.PORT, () =>
   console.log("Backend running on port " + process.env.PORT)

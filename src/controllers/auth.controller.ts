@@ -1,10 +1,11 @@
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
+import type { Request, Response } from "express";
 import { prisma } from "../../lib/prisma";
 import { generateAccessToken, generateRefreshToken } from "../utils/jwt";
 
 
-export const register = async (req: any, res: any) => {
+export const register = async (req: Request, res: Response) => {
   try {
 
   const { email, password } = req.body;
@@ -25,7 +26,7 @@ export const register = async (req: any, res: any) => {
 } 
 }
 
-export const login = async (req: any, res: any) => {
+export const login = async (req: Request, res: Response) => {
   const { email, password } = req.body;
 
   const user = await prisma.user.findUnique({ where: { email } });
@@ -45,7 +46,7 @@ export const login = async (req: any, res: any) => {
   res.json({ accessToken, refreshToken });
 };
 
-export const refresh = async (req: any, res: any) => {
+export const refresh = async (req: Request, res: Response) => {
   const { refreshToken } = req.body;
   if (!refreshToken) return res.status(401).json({ message: "No token" });
 
@@ -58,7 +59,7 @@ export const refresh = async (req: any, res: any) => {
   });
 };
 
-export const logout = async (req: any, res: any) => {
+export const logout = async (req: Request, res: Response) => {
   const { refreshToken } = req.body;
 
   await prisma.user.updateMany({

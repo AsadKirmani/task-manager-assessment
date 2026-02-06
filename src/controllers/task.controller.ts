@@ -1,7 +1,8 @@
 import { prisma } from "../../lib/prisma";
+import type { Request, Response } from "express";
 
 
-export const createTask = async (req: any, res: any) => {
+export const createTask = async (req: Request, res: Response) => {
   try {
     
     const task = await prisma.task.create({
@@ -19,7 +20,7 @@ export const createTask = async (req: any, res: any) => {
   }
 };
 
-export const getTasks = async (req: any, res: any) => {
+export const getTasks = async (req: Request, res: Response) => {
   const tasks = await prisma.task.findMany({
     where: { userId: req.user.userId },
     orderBy: { createdAt: "desc" },
@@ -28,8 +29,8 @@ export const getTasks = async (req: any, res: any) => {
   res.json(tasks);
 };
 
-export const toggleTask = async (req: any, res: any) => {
-  const task = await prisma.task.findUnique({ where: { id: req.params.id } });
+export const toggleTask = async (req: Request, res: Response) => {
+  const task = await prisma.task.findUnique({ where: { id: req.params.id as string } });
 
   if (!task) return res.status(404).json({ message: "Not found" });
 
@@ -41,7 +42,7 @@ export const toggleTask = async (req: any, res: any) => {
   res.json(updated);
 };
 
-export const deleteTask = async (req: any, res: any) => {
-  await prisma.task.delete({ where: { id: req.params.id } });
+export const deleteTask = async (req: Request, res: Response) => {
+  await prisma.task.delete({ where: { id: req.params.id as string } });
   res.json({ message: "Deleted" });
 };
