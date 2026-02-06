@@ -9,6 +9,7 @@
     "dev": "tsx watch src/server.ts --trace-warnings",
     "build": "tsc",
     "start": "node dist/server.js",
+    "postinstall": "npx prisma generate",
     "prisma:migrate": "prisma migrate dev",
     "prisma:generate": "prisma generate"
   },
