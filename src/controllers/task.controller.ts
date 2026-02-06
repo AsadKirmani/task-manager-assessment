@@ -1,7 +1,7 @@
 import { prisma } from "../../lib/prisma";
 
 
-export const createTask = async (req: any, res: any) => {
+export const createTask = async (req, res) => {
   try {
     
     const task = await prisma.task.create({
@@ -19,7 +19,7 @@ export const createTask = async (req: any, res: any) => {
   }
 };
 
-export const getTasks = async (req: any, res: any) => {
+export const getTasks = async (req, res) => {
   const tasks = await prisma.task.findMany({
     where: { userId: req.user.userId },
     orderBy: { createdAt: "desc" },
@@ -28,7 +28,7 @@ export const getTasks = async (req: any, res: any) => {
   res.json(tasks);
 };
 
-export const toggleTask = async (req: any, res: any) => {
+export const toggleTask = async (req, res) => {
   const task = await prisma.task.findUnique({ where: { id: req.params.id } });
 
   if (!task) return res.status(404).json({ message: "Not found" });
