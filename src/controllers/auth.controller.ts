@@ -25,7 +25,7 @@ export const register = async (req, res) => {
 } 
 }
 
-export const login = async (req: any, res: any) => {
+export const login = async (req, res) => {
   const { email, password } = req.body;
 
   const user = await prisma.user.findUnique({ where: { email } });
@@ -45,7 +45,7 @@ export const login = async (req: any, res: any) => {
   res.json({ accessToken, refreshToken });
 };
 
-export const refresh = async (req: any, res: any) => {
+export const refresh = async (req, res) => {
   const { refreshToken } = req.body;
   if (!refreshToken) return res.status(401).json({ message: "No token" });
 
@@ -58,7 +58,7 @@ export const refresh = async (req: any, res: any) => {
   });
 };
 
-export const logout = async (req: any, res: any) => {
+export const logout = async (req, res) => {
   const { refreshToken } = req.body;
 
   await prisma.user.updateMany({
