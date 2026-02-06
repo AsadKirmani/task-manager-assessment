@@ -7,15 +7,11 @@
 
     // Environment Settings
     // See also https://aka.ms/tsconfig/module
-     "module": "ESNext",
+    "module": "ESNext",
     "moduleResolution": "node",
-    // "target": "ES2023",
-    // "esModuleInterop": true,
-    // "ignoreDeprecations": "5.0",
-    // For nodejs:
-    
+    "target": "ES2023",
+    "esModuleInterop": true,
     "types": ["node"],
-    // and npm install -D @types/node
 
     // Other Outputs
     "sourceMap": true,
