@@ -4,7 +4,7 @@ import { prisma } from "../../lib/prisma";
 import { generateAccessToken, generateRefreshToken } from "../utils/jwt";
 
 
-export const register = async (req: any, res: any) => {
+export const register = async (req, res) => {
   try {
 
   const { email, password } = req.body;
