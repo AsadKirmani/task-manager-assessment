@@ -19,6 +19,4 @@ app.use(express.json());
 app.use("/api/auth", authRoutes);
 app.use("/api/tasks", taskRoutes);
 
-app.listen(process.env.PORT, () =>
-  console.log("Backend running on port " + process.env.PORT)
-);
+app.listen(process.env.URL);
