@@ -2,15 +2,15 @@ import express  from "express";
 import cors from "cors";
 import dotenv from "dotenv";
 
-import authRoutes from "./routes/auth.routes";
-import taskRoutes from "./routes/task.routes";
+import authRoutes from "./routes/auth.routes.js";
+import taskRoutes from "./routes/task.routes.js";
 
 dotenv.config();
 
 const app = express();
 
-app.get('/api', (req, res) => {
-  res.send('Hello from the API root!'); // Or res.sendFile('index.html') for a static file
+app.get('/', (req, res) => {
+  res.send('Hello from the root!');
 }); 
 
 app.use(cors());
